@@ -1,0 +1,3 @@
+service: your-service-name
+runtime: custom
+env: flex
