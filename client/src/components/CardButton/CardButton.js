@@ -5,11 +5,11 @@ import './CardButton.scss'
 const card = props => (
   <div className="Card CardButton">
     <a
-      href="https://t.me/Fiveminues_bot"
+      href="https://t.me/cinco_minutos_bot"
       target="_blank"
       rel="noopener noreferrer"
     >
-      Adicione nosso bot no Telegram @fiveminutes_bot
+      Adicione nosso bot no Telegram @cinco_minutos_bot
     </a>
   </div>
 )

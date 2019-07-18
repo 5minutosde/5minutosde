@@ -2,7 +2,7 @@
 
 ## Uso
 
-1) Comece no bot: https://t.me/Fiveminues_bot
+1) Comece no bot: https://t.me/cinco_minutos_bot
 2) Envie um áudio
 3) Responda o áudio para adicionar um título
 
