@@ -57,7 +57,7 @@ def reply_message(message, user_id, username, user_avatar):
             })
     else:
         slug = slugify(message["text"] + '-por-' + username)
-        audio_url =  "https://5minutos.de/" + username + slug
+        audio_url =  "https://5minutos.de/" + username + "/" + slug
         db.child("audios/").update({
             "{}/title".format(message_id): message["text"],
             "{}/slug".format(message_id): slug
@@ -84,7 +84,7 @@ def handle_message(message, user_id, username, user_avatar):
         return media_message(message, user_id, username, user_avatar)
 
     slug = slugify(message["text"] + '-por-' + username)
-    audio_url =  "https://5minutos.de/" + username + slug
+    audio_url =  "https://5minutos.de/" + username + "/" + slug
     data = {
         "title": message["text"],
         "slug": slug,
