@@ -1,4 +1,5 @@
 .env
+.env.*
 downloads/
 app.yaml
 app.staging.yaml

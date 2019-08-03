@@ -57,10 +57,12 @@ def reply_message(message, user_id, username, user_avatar):
             })
     else:
         slug = slugify(message["text"] + '-por-' + username)
+        audio_url =  "https://5minutos.de/" + username + slug
         db.child("audios/").update({
             "{}/title".format(message_id): message["text"],
             "{}/slug".format(message_id): slug
         })
+        app.send_message( user_id, audio_url, parse_mode="MARKDOWN" )
 
 
 def user_photo(photo_id, username, user_id):
@@ -82,6 +84,7 @@ def handle_message(message, user_id, username, user_avatar):
         return media_message(message, user_id, username, user_avatar)
 
     slug = slugify(message["text"] + '-por-' + username)
+    audio_url =  "https://5minutos.de/" + username + slug
     data = {
         "title": message["text"],
         "slug": slug,
@@ -93,6 +96,7 @@ def handle_message(message, user_id, username, user_avatar):
         }
     }
     db.child("audios/{}".format(message['message_id'])).set(data)
+    app.send_message( user_id, audio_url, parse_mode="MARKDOWN" )
 
 
 def handle_delete(message):
@@ -122,6 +126,8 @@ def on_message_handler(client, message):
             avatar_url = user_photo(photo_id, username, user_id) if photo_id else None
             if avatar_url:
                 handle_message(message, user_id, username, avatar_url)
+                user_url = "https://5minutos.de/" + username
+                app.send_message( user_id, user_url, parse_mode="MARKDOWN" )
         else:
             app.send_message(
                 user_id,
