@@ -49,12 +49,21 @@ def media_message(message, user_id, username, avatar_url):
 def reply_message(message, user_id, username, user_avatar):
     message_id = message['reply_to_message']['message_id']
     if message.media:
+        app.send_message(
+            user_id,
+            "Olá " + username + "! Beleza, fazendo upload :)",
+            parse_mode="MARKDOWN" )
         media_url = handle_media(message, username, user_id, user_avatar)
         db.child("audios/").update(
             {
                 "{}/media_audio"
                 .format(message_id): media_url,
             })
+        app.send_message(
+            user_id,
+            "Ok! Tudo certo! Agora só responder o áudio que acabou de enviar" +
+            "pra gerar um título e um link!",
+            parse_mode="MARKDOWN" )
     else:
         slug = slugify(message["text"] + '-por-' + username)
         audio_url =  "https://5minutos.de/" + username + "/" + slug
